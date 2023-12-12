@@ -83,3 +83,25 @@ def quincena (fecha , corte){
 }
 
 quincena (fechaIngreso, seleccionNumero)
+
+//FUNCION FINAL CON AJUSTES
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
+def fechaIngreso = '2024-02-16'
+int seleccionNumero = 3
+
+def quincena (fecha , corte){
+  def fechaFormato = LocalDate.parse(fecha)
+  def ano = fechaFormato.year
+  def mes = fechaFormato.monthValue
+  def fechaCorregida 
+
+  if (corte == 1){
+    fechaCorregida = fechaFormato.withDayOfMonth(15)
+  }else{
+    fechaCorregida  = fechaFormato.withDayOfMonth(fechaFormato.lengthOfMonth())
+  }
+  return fechaCorregida
+}
+println(quincena(fechaIngreso, seleccionNumero))
